@@ -32,12 +32,12 @@ void get_user_input(char* sentence){
   int i = 0;//index holder
   char c = getchar();
 
-  while(c != '\n'){
+  while(c != '\n'){//populate char array
     sentence[i++] = c;
     c = getchar();
   }
   sentence[i] = '\0';//make sure array ends
-  printf("%s",sentence);
+  printf("%s",sentence);//print sentence
   printf("\n");
 }
 
@@ -52,4 +52,17 @@ int string_length(char *str) {
 
 char is_valid_character(char c){
   return c > 31 && c < 127;
+}
+
+int find_word_start(char* str, int i){
+  int index = 0;//index of the next word
+  char c = 1;
+  while(str[i] != '\0'){
+    if(str[i] == ' ' && c){
+      index = i + 1;//save position of next word
+      c = 0;//found word, prevent re-run
+    }
+    i++;
+  }
+  return index;
 }
