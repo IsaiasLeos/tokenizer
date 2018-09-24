@@ -20,3 +20,7 @@ int string_length(char *str) {
   }
   return count;
 }
+
+int is_valid_character(char c){
+  return c > 31 && c < 127;
+}
