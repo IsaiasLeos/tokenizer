@@ -2,6 +2,7 @@
 #include "tokenizer.h"
 #include "history.h"
 
+/*Obtains user input and populates the given char array. */
 void get_user_input(char*);
 
 int main(){
@@ -15,6 +16,14 @@ int main(){
     x = string_length(&sentence[0]);
     printf("length -> %d",x);
     printf("\n");
+
+    printf("not implemented - is_valid_character()");
+
+    printf("not implemented - find_word_start()");
+
+    printf("not implemented - find_word_end()");
+
+    printf("not implemented - cound_words()");
   }
 }
 
