@@ -2,18 +2,13 @@
 #include "tokenizer.h"
 #include "history.h"
 
+/*Obtains user input and populates the given char array. */
 void get_user_input(char*);
 /* Would read user input and remove any extra spaces. */
-void fix_user_sentence(char*);
-
-
-
 int main() {
   int x; //output holder
   int cont = 1;
   char *sentence; //to carry all user input
-
-
 
   while (1 && cont) {
     get_user_input(sentence);
@@ -32,7 +27,8 @@ int main() {
     x = find_word_end(&sentence[0], 0); //obtain index to next word
     printf("next word end at - %d", x);
     printf("\n");
-    printf("not implemented");
+    x = count_words(sentence);
+    printf("counted words - %d",x);
     printf("\n");
   }
   return 0;
@@ -48,20 +44,9 @@ void get_user_input(char* sentence) {
     c = getchar();
   }
   sentence[i] = '\0'; //make sure string is ended
-  fix_user_sentence(sentence);
-  printf("%s", sentence); //print sentence
+  //printf("%s", sentence); //print sentence
   printf("\n");
 
-}
-
-void fix_user_sentence(char* str) {
-  int i, j;
-  for (i = j = 0; str[i]; ++i) {
-    if (str[i] != ' ' || (str[i - 1]) != ' ') {
-      str[j++] = str[i];
-    }
-  }
-  str[j] = '\0';
 }
 
 int string_length(char *str) {
@@ -74,36 +59,27 @@ int string_length(char *str) {
 }
 
 int find_word_start(char* str, int i) {
-  int index = 0; //index of next word
-  char c = 1; //boolean
   while (str[i] != '\0') {
-    if (str[i] == ' ' && c) {//TODO improve
-      index = i + 1; //set index of next word
-      c = 0;
+    if (is_valid_character(str[i])) {//TODO improve
+      return i; //set index of next word
     }
     i++;
   }
-  return index;
+  return 0;
 }
-
-
 
 int find_word_end(char* str, int i) {
-  int index = 0; //index of next word
-  char c = 1, d = 1; //boolean
-  while (str[i] != '\0' || str[i] == ' ') {
+  while(str[i] != '\0'){
+    if(!is_valid_character(str[i])) {
+      return i;
+    }
     i++;
   }
-  while (str[i] != '\0' || str[i] == ' ') {
-    i++;
-  }
-  return index;
 }
-
 
 
 char is_valid_character(char c) {
-  return c > 31 && c < 127;
+  return c > 32 && c < 127;
 }
 
 
