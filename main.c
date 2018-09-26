@@ -23,10 +23,10 @@ int main() {
 }
 
 void get_user_input(char* sentence) {
-  printf(">");
+  printf(">");//validation for input
   int i = 0;
-  char c = getchar();
-  while (c != '\n') {
+  char c = getchar();//get user input
+  while (c != '\n') {//populate array with user input
     sentence[i++] = c;
     c = getchar();
   }
@@ -35,10 +35,10 @@ void get_user_input(char* sentence) {
 
 void copy_array(char* source, char* destination, int size) {
   int i;
-  for (i = 0; i < size; i++) {
+  for (i = 0; i < size; i++) {//copy from source to destination
     destination[i] = source[i];
   }
-  printf("%s", destination);
+  printf("%s", destination);//print for confirmation
 }
 
 int string_length(char *str) {
@@ -52,10 +52,11 @@ int string_length(char *str) {
 
 int find_word_start(char* str, int i) {
   while (str[i] != '\0') {
+    //check for a valid character
     if (is_valid_character(str[i])) {
-      return i; //set index of next word
+      return i; //return index of valid character
     }
-    i++;
+    i++;//incrementation for traversal
   }
   return 0;
 }
@@ -64,11 +65,12 @@ int find_word_start(char* str, int i) {
 
 int find_word_end(char* str, int i) {
   while (str[i] != '\0') {
+    //check for a non-valid character
     if (!is_valid_character(str[i])) {
-      return i;
+      return i;//return index of a invalid character
     }
     if (str[i + 1] == '\0') {
-      return i++;
+      return i++;//no spacing found at the end of the word
     }
     i++;
   }
@@ -76,7 +78,7 @@ int find_word_end(char* str, int i) {
 
 
 char is_valid_character(char c) {
-  return c > 32 && c < 127;
+  return c > 32 && c < 127;//check for validation of character
 }
 
 
@@ -84,10 +86,10 @@ char is_valid_character(char c) {
 int count_words(char* str) {
   int start = 0, end = 0, counted = 0, i = 0;
   while(str[i + 1] != '\0'){
-    start = find_word_start(str,end);
-    end = find_word_end(str,start);
-    i = end;
-    counted++;
+    start = find_word_start(str,end);//save starting index
+    end = find_word_end(str,start);//save ending index
+    i = end;//save ending as current index
+    counted++;//count valid words
   }
   return counted;
 }
