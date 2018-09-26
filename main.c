@@ -83,7 +83,7 @@ char is_valid_character(char c) {
 
 int count_words(char* str) {
   int start = 0, end = 0, counted = 0, i = 0;
-  while(str[i] != '\0'){
+  while(str[i + 1] != '\0'){
     start = find_word_start(str,end);
     end = find_word_end(str,start);
     i = end;
