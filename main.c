@@ -18,7 +18,7 @@ int main() {
     printf("Length: %d", x);
     printf("\n");
     x = count_words(sentence);//count words in user input
-    printf("Words: %d", x);
+    printf("Count: %d", x);//word count
     printf("\n");
   }
   return 0;
@@ -88,6 +88,8 @@ int count_words(char* str) {
   while (str[i + 1] != '\0') {
     start = find_word_start(str, end);//keep track of where a word starts
     end = find_word_end(str, start);//keep track of where a word ends
+    printf("Word at: %d, %d",start,end);
+    printf("\n");
     i = end;//save ending as current index
     counted++;//count valid words
   }
