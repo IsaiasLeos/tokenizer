@@ -13,11 +13,11 @@ int main() {
   char *sentence = (char*) malloc(size * sizeof (char));
   free(sentence);
   while (1) {
-    get_user_input(sentence);
-    x = string_length(sentence);
+    get_user_input(sentence);//assign user input
+    x = string_length(sentence);//return length of user input
     printf("Length: %d", x);
     printf("\n");
-    x = count_words(sentence);
+    x = count_words(sentence);//count words in user input
     printf("Words: %d", x);
     printf("\n");
   }
@@ -25,10 +25,10 @@ int main() {
 }
 
 void get_user_input(char* sentence) {
-  printf(">");
+  printf(">");//input validation
   int i = 0;
-  char c = getchar();
-  while (c != '\n') {
+  char c = getchar();//get user input
+  while (c != '\n') {//populate array with user input
     sentence[i++] = c;
     c = getchar();
   }
@@ -36,13 +36,13 @@ void get_user_input(char* sentence) {
 }
 
 
-
+/*Copy from source to destination*/
 void copy_array(char* source, char* destination, int size) {
   int i;
   for (i = 0; i < size; i++) {
     destination[i] = source[i];
   }
-  printf("%s", destination);
+  printf("%s", destination);//print for confirmation
 }
 
 int string_length(char *str) {
@@ -56,21 +56,23 @@ int string_length(char *str) {
 
 int find_word_start(char* str, int i) {
   while (str[i] != '\0') {
+    //return index of a valid character
     if (is_valid_character(str[i])) {
       return i; //set index of next word
     }
-    i++;
+    i++;//traversal
   }
   return 0;
 }
 
 int find_word_end(char* str, int i) {
   while (str[i] != '\0') {
+    //return index of a invalid character
     if (!is_valid_character(str[i])) {
       return i;
     }
     if (str[i + 1] == '\0') {
-      return i++;
+      return i++;//if NULL character is found
     }
     i++;
   }
@@ -78,7 +80,7 @@ int find_word_end(char* str, int i) {
 
 
 char is_valid_character(char c) {
-  return c > 32 && c < 127;
+  return c > 32 && c < 127;//character validation
 }
 
 int count_words(char* str) {
