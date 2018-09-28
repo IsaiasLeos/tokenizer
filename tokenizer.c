@@ -40,11 +40,11 @@ int find_word_start(char* str, int i) {
 int find_word_end(char* str, int i) {
   while (str[i] != '\0') {
     //return index of a invalid character
-    if (!is_valid_character(str[i])) {
+    if (str[i] == ' ') {
       return i;
     }
     if (str[i + 1] == '\0') {
-      return i++;//if NULL character is found
+      return i + 1;//if NULL character is found
     }
     i++;
   }
