@@ -131,4 +131,4 @@ Overall, a user should be able to:
 You should define each function inside the **history.h** header file and then incorporate the history with your tokenizer and interface.
 
 ## How to use the Program
-Run the program, then input a sentence or word. Press Enter and the program will automatically process the input and give you information like the length of the whole input, shows the index of where the each word starts and ends, and lastly it shows how many words are within the input.
+Run the program, then input a sentence or word. Press Enter and the program will automatically process the input and give you information like the length of the whole input, shows the index of where the each word starts and ends, and lastly it shows how many words are within the input. The program will continue to run unless Ctrl + C is pressed.
