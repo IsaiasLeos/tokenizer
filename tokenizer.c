@@ -3,6 +3,8 @@
 #include "tokenizer.h"
 #include "history.h"
 
+#define ORIGINALSIZE 10
+
 int string_length(char *str) {
     int count = 0; //length holder
     while (str[count] != '\0') {
@@ -46,7 +48,10 @@ int count_words(char* str) {
         printf("\n");
         i = end; //save ending as current index
         counted++; //count valid words
-        if (start == 0 && end == 0) break;
+        if (start == 0 && end == 0) {
+            counted--; //prevent input of just spaces
+            break;
+        }
     }
     return counted;
 }
