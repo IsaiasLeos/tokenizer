@@ -29,7 +29,8 @@ int find_word_end(char* userInput, int index) {
             return index; //return index of a invalid character
         }
         if (userInput[index + 1] == '\0') {
-            return index++; //if NULL character is found
+            index++;
+            return index; //if NULL character is found
         }
         index++;
     }
@@ -41,17 +42,40 @@ char is_valid_character(char c) {
 
 int count_words(char* userInput) {
     int start = 0, end = 0, counted = 0, i = 0;
-    while (userInput[i + 1] != '\0') {
+    int length = string_length(userInput); //return length of user input
+    while (!(length == i)) {
         start = find_word_start(userInput, end); //keep track of where a word starts
         end = find_word_end(userInput, start); //keep track of where a word ends
-        printf("Word at: %d - %d", start, end);
-        printf("\n");
-        i = end; //save ending as current index
-        counted++; //count valid words
-        if (start == 0 && end == 0) {
-            counted--; //prevent input of just spaces
-            break;
-        }
+        printf("Word at: %d - %d\n", start, end);
+        i = end;
+        counted++;
     }
     return counted;
+}
+
+char** tokenize(char* userInput) {
+    printf("Tokenizing...\n");
+    int numWords = count_words(userInput) + 1; //amount of words
+    int start = 0, end = 0, i = 0, j = 0;
+    char **tokenArr = (char**) malloc((numWords + 1) * sizeof (char**));
+    for (i = 0; i < numWords - 1; i++) {
+        start = find_word_start(userInput, end); //keep track of where a word starts
+        end = find_word_end(userInput, start); //keep track of where a word ends
+        tokenArr[i] = (char*) malloc(((end - start) + 1) * sizeof (char)); //double user
+        for (j = 0; j < (end - start) + 1; j++) {
+            if (userInput[j + start] != ' ') {
+                tokenArr[i][j] = userInput[j + start];
+            }
+        }
+        tokenArr[i][j] = '\0';
+    }
+    tokenArr[i] = '\0';
+    return tokenArr;
+}
+
+void print_tokens(char** userInput) {
+    int i;
+    for (i = 0; *userInput[i] != '\0'; ++i) {
+        printf("Token at %d: %s\n", i, userInput[i]);
+    }
 }
