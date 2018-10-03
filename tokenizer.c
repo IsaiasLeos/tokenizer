@@ -55,27 +55,40 @@ int count_words(char* userInput) {
 
 char** tokenize(char* userInput) {
     printf("Tokenizing...\n");
-    int numWords = count_words(userInput) + 1; //amount of words
-    int start = 0, end = 0, i = 0, j = 0;
-    char **tokenArr = (char**) malloc((numWords + 1) * sizeof (char**));
-    for (i = 0; i < numWords - 1; i++) {
+    int numWords = count_words(userInput); //amount of words
+    int start = 0, end = 0, i = 0, j = 0, wordCount = 0;
+    char **tokenArr = (char**) malloc((numWords + 1) * sizeof (char*));
+    for (i = 0; i < numWords; i++) {
         start = find_word_start(userInput, end); //keep track of where a word starts
         end = find_word_end(userInput, start); //keep track of where a word ends
-        tokenArr[i] = (char*) malloc(((end - start) + 1) * sizeof (char)); //double user
-        for (j = 0; j < (end - start) + 1; j++) {
-            if (userInput[j + start] != ' ') {
-                tokenArr[i][j] = userInput[j + start];
+        wordCount = end - start;
+        tokenArr[i] = (char*) malloc((wordCount + 1) * sizeof (char));//allocate memory inside the char**
+        for (j = 0; j < wordCount; j++) {//loop for the size of the word
+            if (userInput[j + start] != ' ') {//while there is no space continue
+                tokenArr[i][j] = userInput[j + start];//tokenize user input
             }
         }
-        tokenArr[i][j] = '\0';
+        tokenArr[i][j] = '\0';//assign null character
     }
-    tokenArr[i] = '\0';
+    tokenArr[i] = '\0';//assign null character
     return tokenArr;
 }
 
 void print_tokens(char** userInput) {
-    int i;
-    for (i = 0; *userInput[i] != '\0'; ++i) {
-        printf("Token at %d: %s\n", i, userInput[i]);
+    int i = 0;
+    while (userInput[i]) {//while there something continue
+        //traverse through tokens
+		printf("Token at %d: %s\n", i, userInput[i]);
+        i++;//increment
     }
+}
+
+void free_tokens(char** userInput) {
+    int i = 0;
+    while (userInput[i]) {//while there something continue
+	//free first set of tokens
+        free(userInput[i]);
+        i++;//increment
+    }
+    free(userInput);//free the pointer pointer
 }
