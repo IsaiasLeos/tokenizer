@@ -3,17 +3,12 @@
 #include "tokenizer.h"
 #include "history.h"
 
-/* Initialize the linked list to keep the history. */
 List* init_history() {
     List *history = (List*) malloc(sizeof (Item));
     history->root = 0;
     return history;
 }
 
-/* Add a history item to the end of the list.
-   List* list - the linked list
-   char* str - the string to store
- */
 void add_history(List* list, char* str) {
     char *strCopy = (char*) malloc(string_length(str) * sizeof (char));
     int i = 0;
@@ -46,24 +41,20 @@ void add_history(List* list, char* str) {
     }
 }
 
-/* Retrieve the string stored in the node where Item->id == id.
-   List* list - the linked list
-   int id - the id of the Item to find */
 char* get_history(List* list, int id) {
-    Item *iter = list->root;
-    while (iter != NULL) {
-        if (iter->id == id) {
+    Item *node = list->root;
+    while (node != NULL) {
+        if (node->id == id) {
             return iter->str;
         }
     }
 }
 
-/* Print the entire contents of the list. */
 void print_history(List* list) {
-    Item *iter = list->root;
-    while (iter != NULL) {
+    Item *node = list->root;
+    while (node != NULL) {
         printf("%d - %s\n", iter->id, iter->str);
-        iter = iter->next; //assign the next one
+        node = node->next; //assign the next one
     }
 }
 

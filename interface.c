@@ -19,6 +19,20 @@ int main() {
         char *userInput = (char*) malloc(size * sizeof (char)); //save user input
         char *userInputTemp = (char*) malloc(size * sizeof (char)); //temp input
         userInput = get_user_input(userInput, userInputTemp);
+	if(userInput[0] == '!'){
+	  switch(userInput[1]){
+	  case 'p':
+	    print_history(history);
+	    break;
+	  case 'g':
+	    userInput = get_history(history, userInput[3]);
+	    printf("%s",userInput);
+	    break;
+	  default:
+	    printf("Unrecongnized Command...");
+	    break;
+	  }
+	}else{
         int x = string_length(userInput); //return length of user input
         printf("\nLength: %d\n", x);
         int y = count_words(userInput); //count words in user input
@@ -26,7 +40,7 @@ int main() {
         tokenArr = tokenize(userInput); //tokenize the input
         print_tokens(tokenArr); //print tokens
         add_history(history, userInput); //add to history
-        print_history(history);
+	}
         free_tokens(tokenArr); //free tokens
         free(userInput); //free user input
         free(userInputTemp); //free temp input
@@ -55,6 +69,7 @@ char* get_user_input(char *userInput, char *userInputTemp) {
             userInputTemp = (char*) malloc(size * sizeof (char)); //double temp
         }
     }
+    if(userInput[0] == '!') return userInput;
     userInput[i] = '\0'; //assign null character
     return userInput;
 }
