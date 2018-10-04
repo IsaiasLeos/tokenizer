@@ -12,6 +12,7 @@ void copy_array(char*, char*, int);
 int main() {
     char size = ORIGINALSIZE;
     int id = 0;
+    List *history = init_history();
     while (1) {
         id++;
         char **tokenArr;
@@ -22,11 +23,13 @@ int main() {
         printf("\nLength: %d\n", x);
         int y = count_words(userInput); //count words in user input
         printf("Count: %d\n\n", y); //word count
-        tokenArr = tokenize(userInput);//tokenize the input
-        print_tokens(tokenArr);//print tokens
-        free_tokens(tokenArr);//free tokens
-        free(userInput);//free user input
-        free(userInputTemp);//free temp input
+        tokenArr = tokenize(userInput); //tokenize the input
+        print_tokens(tokenArr); //print tokens
+        add_history(history, userInput); //add to history
+        print_history(history);
+        free_tokens(tokenArr); //free tokens
+        free(userInput); //free user input
+        free(userInputTemp); //free temp input
     }
     return 0;
 }
@@ -45,14 +48,14 @@ char* get_user_input(char *userInput, char *userInputTemp) {
         c = getchar(); //obtain next char
         i++; //increment
         if (i >= size) {
-            size *= 2;//double size
+            size *= 2; //double size
             copy_array(userInput, userInputTemp, size / 2); //copy original to temp
             userInput = (char*) malloc(size * sizeof (char)); //double original
             copy_array(userInputTemp, userInput, size / 2); //copy temp to original
             userInputTemp = (char*) malloc(size * sizeof (char)); //double temp
         }
     }
-    userInput[i] = '\0';//assign null character
+    userInput[i] = '\0'; //assign null character
     return userInput;
 }
 
