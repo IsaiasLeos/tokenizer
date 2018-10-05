@@ -145,6 +145,6 @@ You should define each function inside the **history.h** header file and then in
   - This will not save the command into history.
 - To clean history you would type **!f**.
   - At this moment the command will not work due to improper implementation.
-- To repeapt or execute a previous command you will use **!#**
-  - You would replace the # with a number through 0 - 9.
+- To repeat or execute a previous command you will use **!#**
+  - You would replace the **#** with a number through 0 - 9.
   - Warning at the moment it will only accept a number from 0 - 9
