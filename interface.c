@@ -4,7 +4,7 @@
 #include "history.h"
 
 #define ORIGINALSIZE 10
-/* Get the user input and dynamicly allocate memory according to that input. */
+/* Get the user input and dynamically allocate memory according to that input. */
 char* get_user_input(char*, char*);
 /* Copy arry from source to destination. */
 void copy_array(char*, char*, int);
@@ -56,9 +56,11 @@ char* get_user_input(char *userInput, char *userInputTemp) {
     c = getchar();
     printf("------------------------------\n");
     while (c != '\n') {
+
         userInput[i] = c; //populate
         c = getchar(); //obtain next char
         i++; //increment
+
         if (i >= size) {
             size *= 2; //double size
             copy_array(userInput, userInputTemp, size / 2); //copy original to temp
@@ -67,7 +69,9 @@ char* get_user_input(char *userInput, char *userInputTemp) {
             userInputTemp = (char*) malloc(size * sizeof (char)); //double temp
         }
     }
+
     if (userInput[0] == '!') return userInput;
+
     userInput[i] = '\0'; //assign null character
     return userInput;
 }
