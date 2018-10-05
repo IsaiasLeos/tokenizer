@@ -47,27 +47,28 @@ char* get_history(List* list, int id) {
         if (node->id == id) {
             return node->str;
         }
-	node = node->next;
+        node = node->next;
     }
 }
 
 void print_history(List* list) {
     Item *node = list->root;
     while (node != NULL) {
-      printf("%d - %s\n", node->id, node->str);
-      node = node->next; //assign the next one
+        printf("%d - %s\n", node->id, node->str);
+        node = node->next; //assign the next one
     }
+    printf("------------------------------\n");
 }
 
 /* Free all Items and the List. */
 void free_history(List* list) {
-  Item *head = list->root;
-  Item *temp;
-  while(head != NULL){
-    temp = head;
-    head = head->next;
-    free(temp);
-  }
+    Item *head = list->root;
+    Item *temp;
+    while (head != NULL) {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
 }
 //What should free history do?
 //History commands?

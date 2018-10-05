@@ -9,44 +9,38 @@ char* get_user_input(char*, char*);
 /* Copy arry from source to destination. */
 void copy_array(char*, char*, int);
 
+void inputInformation(char*, char**);
+
 int main() {
     char size = ORIGINALSIZE;
-    int id = 0;
     List *history = init_history();
     while (1) {
-        id++;
         char **tokenArr;
         char *userInput = (char*) malloc(size * sizeof (char)); //save user input
         char *userInputTemp = (char*) malloc(size * sizeof (char)); //temp input
         userInput = get_user_input(userInput, userInputTemp);
-	if(userInput[0] == '!'){
-	  switch(userInput[1]){
-	  case 'p':
-	    print_history(history);
-	    break;
-	  case 'g'://todo fix crash if number higher than 9
-	    userInput = get_history(history, userInput[3]-48);//remove 48 cause of ascii
-	    printf("%s",userInput);
-	    break;
-	  case 'f':
-	    free_history(history);
-	    break;
-	  default:
-	    printf("Unrecongnized Command...");
-	    break;
-	  }
-	}else{
-        int x = string_length(userInput); //return length of user input
-        printf("\nLength: %d\n", x);
-        int y = count_words(userInput); //count words in user input
-        printf("Count: %d\n\n", y); //word count
-        tokenArr = tokenize(userInput); //tokenize the input
-        print_tokens(tokenArr); //print tokens
-        add_history(history, userInput); //add to history
-	}
-        free_tokens(tokenArr); //free tokens
-        free(userInput); //free user input
-        free(userInputTemp); //free temp input
+        if (userInput[0] == '!') {
+            switch (userInput[1]) {
+                case 'p':
+                    print_history(history);
+                    break;
+                case 'g'://todo fix crash if number higher than 9
+                    userInput = get_history(history, userInput[3] - 48); //remove 48 cause of ascii
+                    inputInformation(userInput, tokenArr);
+                    break;
+                case 'f':
+                    printf("Unimplemented Command...\n");
+                    break;
+                default:
+                    printf("Unrecongnized Command...\n");
+                    break;
+            }
+        } else {
+            inputInformation(userInput, tokenArr);
+            add_history(history, userInput); //add to history
+            free(userInput); //free user input
+            free(userInputTemp); //free temp input
+        }
     }
     return 0;
 }
@@ -54,12 +48,13 @@ int main() {
 char* get_user_input(char *userInput, char *userInputTemp) {
 
     printf(">"); //output validation
+
     int i, size;
     char c;
 
     size = ORIGINALSIZE; //create initial size
     c = getchar();
-
+    printf("------------------------------\n");
     while (c != '\n') {
         userInput[i] = c; //populate
         c = getchar(); //obtain next char
@@ -72,7 +67,7 @@ char* get_user_input(char *userInput, char *userInputTemp) {
             userInputTemp = (char*) malloc(size * sizeof (char)); //double temp
         }
     }
-    if(userInput[0] == '!') return userInput;
+    if (userInput[0] == '!') return userInput;
     userInput[i] = '\0'; //assign null character
     return userInput;
 }
@@ -82,4 +77,16 @@ void copy_array(char* src, char* dest, int size) {
     for (i = 0; i < size; i++) {
         dest[i] = src[i];
     }
+}
+
+void inputInformation(char *userInput, char **tokenArr) {
+    printf("Word: %s", userInput);
+    int x = string_length(userInput); //return length of user input
+    printf("\nLength: %d\n", x);
+    int y = count_words(userInput); //count words in user input
+    printf("Count: %d\n", y); //word count
+    tokenArr = tokenize(userInput); //tokenize the input
+    print_tokens(tokenArr); //print tokens
+    printf("------------------------------\n");
+    free_tokens(tokenArr); //free tokens
 }

@@ -41,21 +41,23 @@ char is_valid_character(char c) {
 }
 
 int count_words(char* userInput) {
+    printf("Word at: ");
     int start = 0, end = 0, counted = 0, i = 0;
     int length = string_length(userInput); //return length of user input
     while (!(length == i) && !(length - 1 == i)) {
         start = find_word_start(userInput, end); //keep track of where a word starts
         end = find_word_end(userInput, start); //keep track of where a word ends
-        printf("Word at: %d - %d\n", start, end);
+        printf("|%d - %d|", start, end);
         i = end;
         if (end == 0 && start == 0) break;
         counted++;
     }
+    printf("\n");
     return counted;
 }
 
 char** tokenize(char* userInput) {
-    printf("Tokenizing...\n");
+    printf("###Tokenizing###\n");
     int numWords = count_words(userInput); //amount of words
     int start = 0, end = 0, i = 0, j = 0, wordCount = 0;
     char **tokenArr = (char**) malloc((numWords + 1) * sizeof (char*));
@@ -76,6 +78,7 @@ char** tokenize(char* userInput) {
 }
 
 void print_tokens(char** userInput) {
+    printf("###Printing Tokens###\n");
     int i = 0;
     while (userInput[i]) {//while there something continue
         //traverse through tokens
