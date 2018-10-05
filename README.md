@@ -131,20 +131,20 @@ Overall, a user should be able to:
 You should define each function inside the **history.h** header file and then incorporate the history with your tokenizer and interface.
 
 ## How to run and compile the Program
-1. Enter the command "make" so it compiles the program.
-2. Enter the command ./interface to run the compiled program
+- Enter the command "make" so it compiles the program.
+- Enter the command ./interface to run the compiled program
 
 ## How to use the Program
-1. Assuming the program is running after compiling it, enter a sentence or word.
-2. Press enter to allow the program to tokenize it and give you information about it.
-- The program will give you the length of the input you gave it.
-- It will convert your input into a array and tell you where each word started.
-- It will save any input you have done into a "history".
-3.To look at history you would type into the program **!p**.
-- This will only print the current history you have.
-- This will not save the command into history.
-4. To clean history you would type **!f**.
-- At this moment the command will not work due to improper implementation.
-5. To repeapt or execute a previous command you will use **!#**
-- You would replace the # with a number through 0 - 9.
-- Warning at the moment it will only accept a number from 0 - 9
+- Assuming the program is running after compiling it, enter a sentence or word:
+- Press enter to allow the program to tokenize it and give you information about it:
+  - The program will give you the length of the input you gave it.
+  - It will convert your input into a array and tell you where each word started.
+  - It will save any input you have done into a "history".
+- To look at history you would type into the program **!p**.
+  - This will only print the current history you have.
+  - This will not save the command into history.
+- To clean history you would type **!f**.
+  - At this moment the command will not work due to improper implementation.
+- To repeapt or execute a previous command you will use **!#**
+  - You would replace the # with a number through 0 - 9.
+  - Warning at the moment it will only accept a number from 0 - 9
