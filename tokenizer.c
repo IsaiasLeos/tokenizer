@@ -47,7 +47,7 @@ int count_words(char* userInput) {
     while (!(length == i) && !(length - 1 == i)) {
         start = find_word_start(userInput, end); //keep track of where a word starts
         end = find_word_end(userInput, start); //keep track of where a word ends
-        printf("|%d - %d|", start, end);
+        printf("[%d, %d] ", start, end);
         i = end;
         if (end == 0 && start == 0) break;
         counted++;

@@ -21,7 +21,7 @@ void add_history(List* list, char* str) {
     Item *node = list->root;
     int index = 0;
     //Insert item into the list for the first time
-    if (node == 0) {
+    if (node == NULL) {
         list->root = (Item*) malloc(sizeof (Item));
         list->root->id = index;
         list->root->str = strCopy;
@@ -29,7 +29,7 @@ void add_history(List* list, char* str) {
     } else {
         index++;
         //Traverse the list until iter->next is null
-        while (node->next != 0) {
+        while (node->next != NULL) {
             node = node->next;
             index++;
         }
