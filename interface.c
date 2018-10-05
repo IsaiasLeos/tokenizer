@@ -24,9 +24,12 @@ int main() {
 	  case 'p':
 	    print_history(history);
 	    break;
-	  case 'g':
-	    userInput = get_history(history, userInput[3]);
+	  case 'g'://todo fix crash if number higher than 9
+	    userInput = get_history(history, userInput[3]-48);//remove 48 cause of ascii
 	    printf("%s",userInput);
+	    break;
+	  case 'f':
+	    free_history(history);
 	    break;
 	  default:
 	    printf("Unrecongnized Command...");
