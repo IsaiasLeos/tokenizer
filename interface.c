@@ -39,7 +39,7 @@ int main() {
 	inputInformation(userInput, tokenArr);
 	break;
       case 'f':
-	printf("Unimplemented Command...\n");
+	free_history(history);
 	break;
       default:
 	printf("Unrecongnized Command...\n");

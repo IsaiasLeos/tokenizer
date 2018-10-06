@@ -66,6 +66,13 @@ void print_history(List* list) {
   printf("------------------------------\n");
 }
 
-void free_history(List* list) {
-  
+void free_history(List* list){
+  Item* current = list->root;
+  Item* temp;
+  while(current){
+    temp = current;
+    free(current);
+    current = temp->next;
+  }
+  free(list);
 }
