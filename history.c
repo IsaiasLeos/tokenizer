@@ -70,9 +70,9 @@ void free_history(List* list){
   Item* current = list->root;
   Item* temp;
   while(current){
-    temp = current;
-    free(current);
-    current = temp->next;
+    temp = current;//assign current to temp
+    free(current);//free the current
+    current = temp->next;//traverse temp and assign it to current
   }
-  free(list);
+  list->root = NULL;
 }
