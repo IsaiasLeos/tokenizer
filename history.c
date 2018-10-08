@@ -71,6 +71,7 @@ void free_history(List* list){
   Item* temp;
   while(current){
     temp = current;//assign current to temp
+    free(current->str);
     free(current);//free the current
     current = temp->next;//traverse temp and assign it to current
   }
