@@ -16,3 +16,4 @@ history.o: history.c
 clean:
 	-rm *.o
 	-rm *~
+	-rm *.c#
