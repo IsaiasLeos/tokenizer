@@ -17,3 +17,4 @@ clean:
 	-rm *.o
 	-rm *~
 	-rm *.c#
+	-rm interface
