@@ -91,6 +91,3 @@ void free_history(List *list)
   }
   list->root = NULL;
 }
-// git clone -> clone repository
-// git checkout -> switch repository
-// git rm --staged .\history.c
